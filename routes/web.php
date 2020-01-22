@@ -13,7 +13,7 @@
 
 Route::get('/', 'PagesController@index');
 
-Route::get('item/{category}/{good}', 'GoodsController@show');
+Route::get('item/{category}/{good}', 'PagesController@getCurrentGood');
 
 Auth::routes();
 

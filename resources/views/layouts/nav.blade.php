@@ -8,11 +8,15 @@
             <input class="form-control mr-sm-2 w-100" type="search" placeholder="Search" aria-label="Search">
         </form>
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    {{ Auth::user()->balance.'Р' }}
-                    <img src="/resources/img/wallet.svg" class="wallet" alt="wallet"></a>
-            </li>
+            @if (Route::has('login'))
+                @auth
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        {{ Auth::user()->balance.'Р' }}
+                        <img src="/resources/img/wallet.svg" class="wallet" alt="wallet"></a>
+                </li>
+                @endauth
+            @endif
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <img src="/resources/img/cart.svg" alt="cart">
