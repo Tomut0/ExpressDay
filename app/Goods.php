@@ -12,6 +12,7 @@ class Goods extends Model
     public static function getAllGoods() {
 	    return $goods = DB::table('goods')->get();
 	}
+
 	public static function getCurrentGood($id) {
 	    return $good = DB::table('goods')->find($id);
 	}
@@ -33,4 +34,5 @@ class Goods extends Model
             abort(404);
         }
     }
+
 }

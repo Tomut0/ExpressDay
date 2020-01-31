@@ -17,9 +17,8 @@ class PagesController extends Controller
         return view('good', compact('good','category'));
     }
 
-    public function getAllGoods($category) {
+    public function getFilteredGood($category) {
         $filtered_good = App\Goods::getFilteredGood($category);
-
         return view('search', compact('filtered_good'));
     }
     public function Search(Request $request) {

@@ -26,7 +26,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'balance'
+        'password', 'remember_token', 'balance', 'cartitems',
     ];
 
     /**
@@ -38,4 +38,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public static function addCart($id) {
+        $user = DB::table('users')->insert(["cartitems" => $id]);
+        dd($user);
+    }
 }

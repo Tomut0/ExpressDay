@@ -29,6 +29,18 @@ $blue: #3498DB;
   input[aria-label="Search"]:focus {
     border: 2px solid $blue !important;
   }
+  .count {
+    width: 24px;
+    background: $blue;
+    display: block;
+    height: 24px;
+    margin-left: 20px;
+    color: white;
+    font-size: 22px;
+    text-align: center;
+    line-height: 1;
+    border-radius: 12px;
+  }
 }
 
 footer {

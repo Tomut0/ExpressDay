@@ -19,6 +19,7 @@
             @endif
             <li class="nav-item">
                 <a href="#" class="nav-link">
+                    
                     <img src="/resources/img/cart.svg" alt="cart">
                     Корзина
                 </a>

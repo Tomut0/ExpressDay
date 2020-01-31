@@ -13,9 +13,9 @@
 
 Route::get('/', 'PagesController@index');
 
-Route::get('item/{category}/{good}', 'PagesController@getCurrentGood');
+Route::any('item/{category}/{good}', 'PagesController@getCurrentGood');
 
-Route::get('item/{category}', 'PagesController@getAllGoods');
+Route::get('item/{category}', 'PagesController@getFilteredGood');
 
 Auth::routes();
 
