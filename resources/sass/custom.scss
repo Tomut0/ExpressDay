@@ -5,6 +5,10 @@ $blue: #3498DB;
   list-style-type: none;
 }
 
+body {
+  background-color: #ecf0f1 !important;
+}
+
 .navbar {
   img {vertical-align: bottom};
 
@@ -23,7 +27,7 @@ $blue: #3498DB;
     border-radius: 30px;
     box-shadow: none;
     background: url("../img/search.svg") no-repeat 10px;
-    padding-left: 1.75em;
+    padding-left: 2em;
   }
 
   input[aria-label="Search"]:focus {
@@ -46,7 +50,6 @@ $blue: #3498DB;
 footer {
   position: absolute;
   right: 0;
-  bottom: 0;
   left: 0;
   padding: 1rem;
   background-color: #565656;
@@ -60,5 +63,23 @@ footer {
   li.d-flex {
     a  {width: 100%; margin: 5px 0;}
     img {width: 50%;}
+  }
+}
+
+.card {
+  text-decoration: none;
+
+  .card-img-top {
+    margin: 0 auto;
+    object-fit: contain;
+    height: 50%;
+    max-width: 70%;
+    width: 100%;
+  }
+  .card-title {
+    color: #3d3d3d;
+  }
+  .card-body {
+    color: #3d3d3d;
   }
 }

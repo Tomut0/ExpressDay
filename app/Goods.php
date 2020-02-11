@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 
@@ -14,7 +15,11 @@ class Goods extends Model
 	}
 
 	public static function getCurrentGood($id) {
-	    return $good = DB::table('goods')->find($id);
+        $good = DB::table('goods')->find($id);
+        $views_update = DB::table('goods')->select('*')
+            ->where('id', '=', $id)->update(['views' => $good->views + 1]);
+	    return $good;
+
 	}
 
     public static function getFilteredGood($category) {
@@ -35,4 +40,28 @@ class Goods extends Model
         }
     }
 
+    public static function addCart($id) {
+        $itemQuery = DB::table('users')->select('*')->where('name', '=', Auth::user()->name);
+        $user = $itemQuery->first();
+        $coincidence = false;
+        $list = explode(",", $user->cartitems);
+        
+        foreach ($list as $key => $val) {
+            if ($val === $id) {
+                $coincidence = true;
+            }
+        }
+
+        if (isset($_POST["cart"])) {
+            if (!$user->cartitems || empty($user->cartitems) || $user->cartitems == null) {
+                $itemQuery->update(['cartitems' => $id]);
+                return '<h4> Товар добавлен в корзину </h4>';
+            } elseif ($coincidence) {
+                return false;
+            } 
+            else {
+                $itemQuery->update(['cartitems' => $user->cartitems . ',' . $id]);
+            }
+        }
+    }
 }

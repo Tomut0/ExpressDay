@@ -5,7 +5,7 @@
         </a>
         <form class="form-inline mx-auto w-50">
             {{ csrf_field() }}
-            <input class="form-control mr-sm-2 w-100" type="search" id="search" placeholder="Search" aria-label="Search">
+            <input class="form-control mr-sm-2 w-100" type="search" id="search" placeholder="Найти" aria-label="Search">
         </form>
         <ul class="navbar-nav mr-auto">
             @if (Route::has('login'))
@@ -17,12 +17,16 @@
                 </li>
                 @endauth
             @endif
-            <li class="nav-item">
-                <a href="#" class="nav-link">
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     
                     <img src="/resources/img/cart.svg" alt="cart">
                     Корзина
                 </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                </div>
             </li>
             <li class="nav-item">
                 @if (Route::has('login'))

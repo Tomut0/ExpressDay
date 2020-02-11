@@ -14,6 +14,7 @@ class PagesController extends Controller
 
     public function getCurrentGood($category, $id) {
         $good = App\Goods::getCurrentGood($id);
+
         return view('good', compact('good','category'));
     }
 
@@ -21,7 +22,7 @@ class PagesController extends Controller
         $filtered_good = App\Goods::getFilteredGood($category);
         return view('search', compact('filtered_good'));
     }
-    public function Search(Request $request) {
-        return view('search');
-    }
+//    public function Search(Request $request) {
+//        return view('search');
+//    }
 }

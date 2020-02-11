@@ -1,20 +1,19 @@
 <?php
-use App\User;
-
+use App\Goods;
 ?>
 @extends('layouts.html')
 
 @section('link','/resources/sass/custom.css')
 @section('title', 'ExpressDay')
 @section('content')
-    <div class="container-xl bg-white vh-100">
+    <div class="container-xl bg-white">
         @include('layouts.nav')
         <main>
             <div class="jumbotron jumbotron-fluid">
                 <div class="container"></div>
             </div>
             <div class="container-xl">
-                <p>{{ $good->goods }}</p>
+                <p>{{ $good->name }}</p>
                 <p>{{ $category }}</p>
                 <p>{{ $good->description }}</p>
                 @if (Route::has('login'))
@@ -27,7 +26,7 @@ use App\User;
                 @endif
                 <?php
                 if (isset($_POST["cart"])) {
-                    $result = User::addCart("$good->id");
+                    echo $result = Goods::addCart("$good->id");
                 }
                 ?>
             </div>
