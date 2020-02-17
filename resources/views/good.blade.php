@@ -18,7 +18,7 @@ use App\Goods;
                 <p>{{ $good->description }}</p>
                 @if (Route::has('login'))
                     @auth
-                        <form action="{{ Route::currentRouteName() }}" method="POST">
+                        <form method="POST">
                             @csrf
                             <button type="submit" name="cart">Добавить товар в корзину</button>
                         </form>
@@ -27,6 +27,7 @@ use App\Goods;
                 <?php
                 if (isset($_POST["cart"])) {
                     echo $result = Goods::addCart("$good->id");
+                    header("Refresh:0");
                 }
                 ?>
             </div>

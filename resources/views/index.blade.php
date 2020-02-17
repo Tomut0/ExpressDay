@@ -15,7 +15,7 @@
                             <div class="col mb-4">
                                 <div class="card h-100">
                                     <a href="item/{{ $good->category }}/{{ $good->id }}" class="h-100 d-flex flex-column">
-                                    <img src="{{ $good->img }}" class="card-img-top" alt="{{ $good->name }}">
+                                    <img src="{{ $good->img }}" class="card-img-top mt-3" alt="{{ $good->name }}">
                                     <div class="card-body d-flex justify-content-end flex-column">
                                         <h5 class="card-title">{{ $good->name }}</h5>
                                         <p class="card-text">{{ $good->description }}</p>

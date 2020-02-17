@@ -9,20 +9,22 @@ class PagesController extends Controller
 {
     public function index() {
         $goods = App\Goods::getAllGoods();
-        return view('index', compact('goods'));
+        $cartlist = App\Goods::CartList();
+        return view('index', compact('goods','cartlist'));
     }
 
     public function getCurrentGood($category, $id) {
         $good = App\Goods::getCurrentGood($id);
-
-        return view('good', compact('good','category'));
+        $cartlist = App\Goods::CartList();
+        return view('good', compact('good','category','cartlist'));
     }
-
+    public function removeCart($id) {
+        $aga = App\Goods::removeCart($id);
+        return $aga;
+    }
     public function getFilteredGood($category) {
+        $cartlist = App\Goods::CartList();
         $filtered_good = App\Goods::getFilteredGood($category);
-        return view('search', compact('filtered_good'));
+        return view('search', compact('filtered_good','cartlist'));
     }
-//    public function Search(Request $request) {
-//        return view('search');
-//    }
 }

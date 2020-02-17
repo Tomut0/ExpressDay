@@ -15,6 +15,10 @@ Route::get('/', 'PagesController@index');
 
 Route::any('item/{category}/{good}', 'PagesController@getCurrentGood');
 
+Route::match(['get', 'post'], 'item/{category}/{good}/removeCart1', function ($categotu) {
+    return "Hello World, $id";
+});
+
 Route::get('item/{category}', 'PagesController@getFilteredGood');
 
 Auth::routes();

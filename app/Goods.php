@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-
-
 class Goods extends Model
 {
     public static function getAllGoods() {
@@ -40,12 +38,13 @@ class Goods extends Model
         }
     }
 
-    public static function addCart($id) {
+    public static function addCart($id)
+    {
         $itemQuery = DB::table('users')->select('*')->where('name', '=', Auth::user()->name);
         $user = $itemQuery->first();
         $coincidence = false;
         $list = explode(",", $user->cartitems);
-        
+
         foreach ($list as $key => $val) {
             if ($val === $id) {
                 $coincidence = true;
@@ -58,10 +57,30 @@ class Goods extends Model
                 return '<h4> Товар добавлен в корзину </h4>';
             } elseif ($coincidence) {
                 return false;
-            } 
-            else {
+            } else {
                 $itemQuery->update(['cartitems' => $user->cartitems . ',' . $id]);
             }
+        }
+    }
+
+    // public static function removeCart($id)
+    // {
+    //     $itemQuery = DB::table('users')->select('*')->where('name', '=', Auth::user()->name);
+    //     $user = $itemQuery->first();
+    //     $list = explode(",", $user->cartitems);
+    //     $key = array_search($id, $list);
+    //     unset($list[$key]);
+    //     $itemQuery->update(['cartitems' => $list[$key]]);
+    //     print_r($list);
+    //     echo $id, '-', $key;
+    //     return 'ti lox';
+    // }
+
+    public static function CartList() {
+        if (Auth::check()) {
+            $itemQuery = DB::table('users')->select('*')->where('name', '=', Auth::user()->name);
+            $ids = explode(",", $itemQuery->first()->cartitems);
+            return $goods = DB::table('goods')->whereIn('id', $ids)->get();
         }
     }
 }

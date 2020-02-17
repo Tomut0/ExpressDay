@@ -66,6 +66,17 @@ footer {
   }
 }
 
+.dropdown-menu {
+  transform: translateX(-50%);
+  left: 50% !important;
+}
+.card-desk {
+  width: 500px;
+  .card {
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,.125) !important;
+  }
+}
 .card {
   text-decoration: none;
 

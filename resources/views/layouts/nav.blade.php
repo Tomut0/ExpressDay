@@ -1,3 +1,4 @@
+
 <header>
     <nav class="navbar navbar-expand-xl">
         <a href="{{ url('/') }}" class="navbar-brand text-dark">ExpressDay
@@ -7,7 +8,7 @@
             {{ csrf_field() }}
             <input class="form-control mr-sm-2 w-100" type="search" id="search" placeholder="Найти" aria-label="Search">
         </form>
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav">
             @if (Route::has('login'))
                 @auth
                 <li class="nav-item">
@@ -17,6 +18,8 @@
                 </li>
                 @endauth
             @endif
+                @if (Route::has('login'))
+                    @auth
             <li class="nav-item dropdown">
                 <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     
@@ -24,10 +27,39 @@
                     Корзина
                 </a>
 
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
+                <div class="dropdown-menu p-0" aria-labelledby="dropdownMenuButton">
+                    <div class="card-desk">
+                    @foreach($cartlist as $good)
+                        <div class="card mt-3" style="max-width: 540px;">
+                            <div class="row no-gutters">
+                                <div class="col-md-2 mx-3 my-3 d-flex justify-content-center align-items-center">
+                                    <img src="{{$good->img}}" class="card-img" alt="{{ $good->name }}">
+                                </div>
+                                <div class="col-md-3 mx-3 d-flex justify-content-center align-items-center text-center">
+                                    <div class="card-body p-0">
+                                        <h5 class="card-title">{{$good->name}}</h5>
+{{--                                        <p class="card-text">{{}}</p>--}}
+{{--                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>--}}
+                                    </div>
+                                </div>
+                                <div class="col-md-3 d-flex justify-content-center align-items-center">
+                                    <p class="card-text">{{$good->price}}Р</p>
+                                </div>
+                                <div class="col-md-2 d-flex justify-content-center align-items-center">
+                                    <p class="card-text">
+                                    <form action="?" method="GET">
+                                       <i class="fas fa-times"></i>
+                                    </form>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                    </div>
                 </div>
             </li>
+                    @endauth
+                @endif
             <li class="nav-item">
                 @if (Route::has('login'))
                     @auth
@@ -68,3 +100,4 @@
         </ul>
     </nav>
 </header>
+
