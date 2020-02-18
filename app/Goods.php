@@ -63,18 +63,16 @@ class Goods extends Model
         }
     }
 
-    // public static function removeCart($id)
-    // {
-    //     $itemQuery = DB::table('users')->select('*')->where('name', '=', Auth::user()->name);
-    //     $user = $itemQuery->first();
-    //     $list = explode(",", $user->cartitems);
-    //     $key = array_search($id, $list);
-    //     unset($list[$key]);
-    //     $itemQuery->update(['cartitems' => $list[$key]]);
-    //     print_r($list);
-    //     echo $id, '-', $key;
-    //     return 'ti lox';
-    // }
+    public static function removeCart($id)
+     {
+         $itemQuery = DB::table('users')->select('*')->where('name', '=', Auth::user()->name);
+         $user = $itemQuery->first();
+         $list = explode(",", $user->cartitems);
+         $key = array_search($id, $list);
+         unset($list[$key]);
+         $itemQuery->update(['cartitems' => implode(',', $list)]);
+         return $user->cartitems;
+     }
 
     public static function CartList() {
         if (Auth::check()) {
@@ -82,5 +80,12 @@ class Goods extends Model
             $ids = explode(",", $itemQuery->first()->cartitems);
             return $goods = DB::table('goods')->whereIn('id', $ids)->get();
         }
+    }
+
+    public static function Search() {
+        if (!empty($_GET['q'])) {
+            $name = htmlspecialchars($_GET['q']);
+            return DB::table('goods')->select('*')->where('name','LIKE','%'.$name.'%')->get();
+        } else abort(404);
     }
 }

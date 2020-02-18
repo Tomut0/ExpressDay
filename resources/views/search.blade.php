@@ -3,7 +3,7 @@
 @section('link','/resources/sass/custom.css')
 @section('title', 'ExpressDay')
 @section('content')
-    <div class="container-xl bg-white">
+    <div class="container-xl bg-white vh-100">
         @include('layouts.nav')
         <main>
             <div class="jumbotron jumbotron-fluid">
@@ -32,6 +32,6 @@
                 @endif
             </div>
         </main>
-        @include('layouts.footer')
     </div>
+    @include('layouts.footer')
 @endsection

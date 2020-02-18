@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App;
+use Illuminate\Support\Facades\URL;
 
 class PagesController extends Controller
 {
@@ -18,13 +19,20 @@ class PagesController extends Controller
         $cartlist = App\Goods::CartList();
         return view('good', compact('good','category','cartlist'));
     }
-    public function removeCart($id) {
-        $aga = App\Goods::removeCart($id);
-        return $aga;
-    }
+
     public function getFilteredGood($category) {
         $cartlist = App\Goods::CartList();
         $filtered_good = App\Goods::getFilteredGood($category);
         return view('search', compact('filtered_good','cartlist'));
+    }
+
+    public function search() {
+        $cartlist = App\Goods::CartList();
+        $filtered_good = App\Goods::Search();
+        return view('search', compact('filtered_good', 'cartlist'));
+    }
+    public function removeCart($id) {
+        $result = App\Goods::removeCart($id);
+        return redirect()->back();
     }
 }

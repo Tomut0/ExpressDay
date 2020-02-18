@@ -1,12 +1,11 @@
-
 <header>
-    <nav class="navbar navbar-expand-xl">
+        <nav class="navbar navbar-expand-xl">
         <a href="{{ url('/') }}" class="navbar-brand text-dark">ExpressDay
             <span class="w-100"></span>
         </a>
-        <form class="form-inline mx-auto w-50">
+        <form action="{{ url('search') }}" class="form-inline mx-auto w-50" method="get">
             {{ csrf_field() }}
-            <input class="form-control mr-sm-2 w-100" type="search" id="search" placeholder="Найти" aria-label="Search">
+            <input class="form-control mr-sm-2 w-100" type="search" name="q" placeholder="Найти" aria-label="Search">
         </form>
         <ul class="navbar-nav">
             @if (Route::has('login'))
@@ -26,7 +25,6 @@
                     <img src="/resources/img/cart.svg" alt="cart">
                     Корзина
                 </a>
-
                 <div class="dropdown-menu p-0" aria-labelledby="dropdownMenuButton">
                     <div class="card-desk">
                     @foreach($cartlist as $good)
@@ -47,8 +45,9 @@
                                 </div>
                                 <div class="col-md-2 d-flex justify-content-center align-items-center">
                                     <p class="card-text">
-                                    <form action="?" method="GET">
-                                       <i class="fas fa-times"></i>
+                                    <form action="remove/{{$good->id}}" method="POST">
+                                        {{ csrf_field() }}
+                                       <button type="submit"><i class="fas fa-times"></i></button>
                                     </form>
                                     </p>
                                 </div>
@@ -63,6 +62,7 @@
             <li class="nav-item">
                 @if (Route::has('login'))
                     @auth
+
                         <a href="{{ url('/home') }}" class="nav-link"><img src="/resources/img/user.svg" alt="user">Профиль</a>
                     @else
                         <a href="{{ route('login') }}" class="nav-link"><img src="/resources/img/user.svg" alt="user">Войти</a>
@@ -71,7 +71,7 @@
             </li>
         </ul>
     </nav>
-    <nav class="navbar navbar-expand-xl">
+        <nav class="navbar navbar-expand-xl">
         <ul class="navbar-nav d-flex justify-content-around w-100">
             <li class="nav-item">
                 <a href="{{ url('/item/electronic') }}" class="nav-link" data-category="electronic">Электроника</a>
