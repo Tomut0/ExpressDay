@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App;
-use Illuminate\Support\Facades\URL;
 
 class PagesController extends Controller
 {
     public function index() {
-        $goods = App\Goods::getAllGoods();
         $cartlist = App\Goods::CartList();
+        $goods = App\Goods::getAllGoods();
         return view('index', compact('goods','cartlist'));
     }
 
     public function getCurrentGood($category, $id) {
-        $good = App\Goods::getCurrentGood($id);
         $cartlist = App\Goods::CartList();
+        $good = App\Goods::getCurrentGood($id);
         return view('good', compact('good','category','cartlist'));
     }
 

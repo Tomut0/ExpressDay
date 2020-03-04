@@ -27,7 +27,6 @@ use App\Goods;
                 <?php
                 if (isset($_POST["cart"])) {
                     echo $result = Goods::addCart("$good->id");
-                    header("Refresh:0");
                 }
                 ?>
             </div>

@@ -3,14 +3,14 @@
 @section('link','/resources/sass/custom.css')
 @section('title', 'ExpressDay')
 @section('content')
-    <div class="container-xl bg-white vh-100">
+    <div class="container-xl bg-white min-vh-100">
         @include('layouts.nav')
         <main>
             <div class="jumbotron jumbotron-fluid">
                 <div class="container"></div>
             </div>
             <div class="container-xl">
-                @if(!$filtered_good)
+                @if(!$filtered_good || !$filtered_good->toArray())
                     <p> Товаров не найдено.</p>
                 @elseif($filtered_good.gettype("object"))
                     <div class="row row-cols-1 row-cols-md-3">
